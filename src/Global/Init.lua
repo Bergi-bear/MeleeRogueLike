@@ -15,12 +15,11 @@ do
             DestroyTimer(GetExpiredTimer())
             print("<<<")
             FogModifierStart(CreateFogModifierRect(Player(0), FOG_OF_WAR_VISIBLE, bj_mapInitialPlayableArea, true, false))
+            print("Карта открыта")
             perebor = CreateGroup()
             InitHEROTable()
             InitTalonBD()
-
             CreateDialogTalon()
-
             print(">>>")
         end)
     end

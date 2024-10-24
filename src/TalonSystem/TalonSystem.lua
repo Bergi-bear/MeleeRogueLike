@@ -6,7 +6,7 @@
 
 
 DialogTalonActive = false
-function CreateDialogTalon(hero)
+function CreateDialogTalon()
     DialogTalonActive = true
 
     if not DialogMainWindow then
@@ -15,18 +15,41 @@ function CreateDialogTalon(hero)
         CreateOSKEY_2Actions()
         CreateOSKEY_3Actions()
         TalonInSlot = {}
+        TableTalonsFH = {}
         --print("11111111111111")
     end
     BlzFrameSetVisible(DialogMainWindow, true)
+    DestroyTalonFH()
+    local maxI = GetRandomInt(1, 5)
     local x, y = 0.2, 0.3
+    if maxI == 5 then
+        x = 0.08
+    elseif maxI == 4 then
+        x = 0.08 + 0.08
+    elseif maxI == 3 then
+        x = 0.08 + 0.08 + 0.08
+    elseif maxI == 2 then
+        x = 0.08 + 0.08 + 0.08 + 0.08
+    elseif maxI == 1 then
+        x = 0.08 + 0.08 + 0.08 + 0.08 + 0.08
+    elseif maxI == 0 then
+        print("Создание 0 талантов не допустимо")
+        if DialogTalonActive then
+            DialogTalonActive = false
+            BlzFrameSetVisible(DialogMainWindow, false)
+        end
+        return
+    end
+
     local tmpTable = TalonReadyForLearn(Talons)
-    for i = 1, 3 do
-        local name, icon, text, level = CreateInfoTalonSingle(DialogMainWindow, x + (i - 1) * 0.2, y, i)
+    local stepX = 0.16
+    for i = 1, maxI do
+        local name, icon, text, level, selfFH = CreateInfoTalonSingle(DialogMainWindow, x + (i - 1) * stepX, y, i)
         SetTalonDescription(tmpTable, i, name, icon, text, level)
+        table.insert(TableTalonsFH, selfFH)
 
     end
 end
-
 
 function TalonReadyForLearn(BD)
     local temptable = {}
@@ -84,7 +107,8 @@ function CreateInfoTalonSingle(BoxBarParent, x, y, i)
     BlzFrameSetPoint(press, FRAMEPOINT_CENTER, rama, FRAMEPOINT_CENTER, 0.0, -0.05)
     BlzFrameSetText(press, "Нажмите " .. i)
     BlzFrameSetScale(press, 2)
-    return name, icon, text, level
+
+    return name, icon, text, level, rama
 end
 
 function ShuffleTable(tbl)
@@ -110,4 +134,12 @@ end
 function ColorText2(s)
     s = "|cffffcc00" .. s .. "|r"
     return s
+end
+
+function DestroyTalonFH()
+    for i = 1, #TableTalonsFH do
+        BlzDestroyFrame(TableTalonsFH[i])
+    end
+    TableTalonsFH={}
+    TalonInSlot={}
 end

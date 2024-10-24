@@ -19,6 +19,7 @@ function CreateOSKEY_1Actions()
                 --print("нажал OSKEY_1",TalonInSlot[1].name)
                 BlzFrameSetVisible(DialogMainWindow,false)
                 LearnTalonByName(TalonInSlot[1].name,TalonInSlot[1].talon)
+                TalonInSlot={}
             end
         end
     end)
@@ -46,10 +47,15 @@ function CreateOSKEY_2Actions()
         if not data.ReleaseOSKEY_2 then
             data.ReleaseOSKEY_2 = true
             if DialogTalonActive then
-                DialogTalonActive=false
-                --print("нажал OSKEY_2",TalonInSlot[2].name)
-                LearnTalonByName(TalonInSlot[2].name,TalonInSlot[2].talon)
-                BlzFrameSetVisible(DialogMainWindow,false)
+                if TalonInSlot[2] then
+                    DialogTalonActive=false
+                    --print("нажал OSKEY_2",TalonInSlot[2].name)
+                    LearnTalonByName(TalonInSlot[2].name,TalonInSlot[2].talon)
+                    BlzFrameSetVisible(DialogMainWindow,false)
+                    TalonInSlot={}
+                else
+                    print("таланта с таким номером у вас нет в пуле на экране")
+                end
             end
         end
     end)
@@ -77,10 +83,15 @@ function CreateOSKEY_3Actions()
         if not data.ReleaseOSKEY_3 then
             data.ReleaseOSKEY_3 = true
             if DialogTalonActive then
-                DialogTalonActive=false
-                --print("нажал OSKEY_3",TalonInSlot[3].name)
-                LearnTalonByName(TalonInSlot[3].name,TalonInSlot[3].talon)
-                BlzFrameSetVisible(DialogMainWindow,false)
+                if TalonInSlot[3] then
+                    DialogTalonActive=false
+                    --print("нажал OSKEY_3",TalonInSlot[3].name)
+                    LearnTalonByName(TalonInSlot[3].name,TalonInSlot[3].talon)
+                    BlzFrameSetVisible(DialogMainWindow,false)
+                    TalonInSlot={}
+                else
+                    print("таланта с таким номером у вас нет в пуле на экране")
+                end
             end
         end
     end)
