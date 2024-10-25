@@ -19,7 +19,8 @@ do
             perebor = CreateGroup()
             InitHEROTable()
             InitTalonBD()
-            CreateDialogTalon()
+            --CreateDialogTalon()
+            InitTrig_ESC()
             print(">>>")
         end)
     end

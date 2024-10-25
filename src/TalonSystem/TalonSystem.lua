@@ -14,6 +14,8 @@ function CreateDialogTalon()
         CreateOSKEY_1Actions()
         CreateOSKEY_2Actions()
         CreateOSKEY_3Actions()
+        CreateOSKEY_4Actions()
+        CreateOSKEY_5Actions()
         TalonInSlot = {}
         TableTalonsFH = {}
         --print("11111111111111")

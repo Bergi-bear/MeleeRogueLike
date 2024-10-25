@@ -18,7 +18,7 @@ function CreateOSKEY_1Actions()
                 DialogTalonActive=false
                 --print("нажал OSKEY_1",TalonInSlot[1].name)
                 BlzFrameSetVisible(DialogMainWindow,false)
-                LearnTalonByName(TalonInSlot[1].name,TalonInSlot[1].talon)
+                LearnTalonByName(TalonInSlot[1].name,TalonInSlot[1].talon,pid)
                 TalonInSlot={}
             end
         end
@@ -50,7 +50,7 @@ function CreateOSKEY_2Actions()
                 if TalonInSlot[2] then
                     DialogTalonActive=false
                     --print("нажал OSKEY_2",TalonInSlot[2].name)
-                    LearnTalonByName(TalonInSlot[2].name,TalonInSlot[2].talon)
+                    LearnTalonByName(TalonInSlot[2].name,TalonInSlot[2].talon,pid)
                     BlzFrameSetVisible(DialogMainWindow,false)
                     TalonInSlot={}
                 else
@@ -86,7 +86,7 @@ function CreateOSKEY_3Actions()
                 if TalonInSlot[3] then
                     DialogTalonActive=false
                     --print("нажал OSKEY_3",TalonInSlot[3].name)
-                    LearnTalonByName(TalonInSlot[3].name,TalonInSlot[3].talon)
+                    LearnTalonByName(TalonInSlot[3].name,TalonInSlot[3].talon,pid)
                     BlzFrameSetVisible(DialogMainWindow,false)
                     TalonInSlot={}
                 else
@@ -104,5 +104,75 @@ function CreateOSKEY_3Actions()
         local pid = GetPlayerId(GetTriggerPlayer())
         local data = HERO[pid]
         data.ReleaseOSKEY_3 = false
+    end)
+end
+
+function CreateOSKEY_4Actions()
+    -----------------------------------------------------------------OSKEY_4
+    local gg_trg_EventUpOSKEY_4 = CreateTrigger()
+    for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+        BlzTriggerRegisterPlayerKeyEvent(gg_trg_EventUpOSKEY_4, Player(i), OSKEY_4, 0, true)
+    end
+    TriggerAddAction(gg_trg_EventUpOSKEY_4, function()
+        local pid = GetPlayerId(GetTriggerPlayer())
+        local data = HERO[pid]
+        if not data.ReleaseOSKEY_4 then
+            data.ReleaseOSKEY_4 = true
+            if DialogTalonActive then
+                if TalonInSlot[4] then
+                    DialogTalonActive=false
+                    --print("нажал OSKEY_3",TalonInSlot[3].name)
+                    LearnTalonByName(TalonInSlot[4].name,TalonInSlot[4].talon,pid)
+                    BlzFrameSetVisible(DialogMainWindow,false)
+                    TalonInSlot={}
+                else
+                    print("таланта с таким номером у вас нет в пуле на экране")
+                end
+            end
+        end
+    end)
+
+    local TrigDepressOSKEY_4 = CreateTrigger()
+    for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+        BlzTriggerRegisterPlayerKeyEvent(TrigDepressOSKEY_4, Player(i), OSKEY_4, 0, false)
+    end
+    TriggerAddAction(TrigDepressOSKEY_4, function()
+        local pid = GetPlayerId(GetTriggerPlayer())
+        local data = HERO[pid]
+        data.ReleaseOSKEY_4 = false
+    end)
+end
+function CreateOSKEY_5Actions()
+    -----------------------------------------------------------------OSKEY_5
+    local gg_trg_EventUpOSKEY_5 = CreateTrigger()
+    for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+        BlzTriggerRegisterPlayerKeyEvent(gg_trg_EventUpOSKEY_5, Player(i), OSKEY_5, 0, true)
+    end
+    TriggerAddAction(gg_trg_EventUpOSKEY_5, function()
+        local pid = GetPlayerId(GetTriggerPlayer())
+        local data = HERO[pid]
+        if not data.ReleaseOSKEY_5 then
+            data.ReleaseOSKEY_5 = true
+            if DialogTalonActive then
+                if TalonInSlot[5] then
+                    DialogTalonActive=false
+                    LearnTalonByName(TalonInSlot[3].name,TalonInSlot[5].talon,pid)
+                    BlzFrameSetVisible(DialogMainWindow,false)
+                    TalonInSlot={}
+                else
+                    print("таланта с таким номером у вас нет в пуле на экране")
+                end
+            end
+        end
+    end)
+
+    local TrigDepressOSKEY_5 = CreateTrigger()
+    for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+        BlzTriggerRegisterPlayerKeyEvent(TrigDepressOSKEY_5, Player(i), OSKEY_5, 0, false)
+    end
+    TriggerAddAction(TrigDepressOSKEY_5, function()
+        local pid = GetPlayerId(GetTriggerPlayer())
+        local data = HERO[pid]
+        data.ReleaseOSKEY_5 = false
     end)
 end
