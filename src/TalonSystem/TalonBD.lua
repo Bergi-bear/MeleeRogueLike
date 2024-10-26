@@ -40,7 +40,7 @@ function InitTalonBD()
             icon = "ReplaceableTextures\\CommandButtons\\BTNGreaterInvulneralbility.blp",
             description = "Делает DS вашу случайную боевую единицу неуязвимой до конца игры",
             level = 0,
-            DS = { 1 },
+            DS = { 1, 1, 1 },
         },
         [6] = {
             name = "Призыв инженеров",
@@ -68,7 +68,7 @@ function InitTalonBD()
             icon = "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
             description = "Даёт +DS золота в секунду, складывается многократно",
             level = 0,
-            DS = { 5,5,5,5,5,5,5,5 },
+            DS = { 5, 5, 5, 5, 5, 5, 5, 5 },
         },
         [10] = {
             name = "Нет пехоте",

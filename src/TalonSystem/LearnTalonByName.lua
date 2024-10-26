@@ -10,8 +10,14 @@ function LearnTalonByName(name, talon, pid)
     if name == "Полезная благодать" then
         data.HasBloodBlade = talon.DS[talon.level]
         HealRandomUnitForPlayer(10,talon.DS[talon.level],pid)
-    elseif name == "Золотая корона" then
-        data.QAndDash = true
+    elseif name == "Массовая божественность" then
+        InvulRandomUnitsCountTimed(pid,20,talon.DS[talon.level])
+    elseif name == "Неуязвимость вечности" then
+        InvulRandomUnitsCountTimed(pid,1,99999)
+    elseif name == "Призыв инженеров" then
+        SummonCountUnitTypeForUnitPositionForPid(talon.DS[talon.level],FourCC("hpea"),GetRandomTownHall(pid),pid)
+    elseif name == "Ремонт и материалы" then
+        RepairAllBuilds(pid,talon.DS[talon.level])
     else
         print("Что-то новое не найден в базе, закрываем окно")
     end
